@@ -8,7 +8,15 @@ class TOC extends React.Component {
     while (i < data.length) {
       list.push(
         <li key={data[i].id}>
-          <a href={data[i].id}>{data[i].title}</a>
+          <a
+            href={data[i].id}
+            onClick={function (e) {
+              this.props.onChangePage();
+              e.preventDefault();
+            }.bind(this)}
+          >
+            {data[i].title}
+          </a>
         </li>
       );
       i += 1;

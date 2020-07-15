@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: "welcome",
+      mode: "read",
       welcome: { title: "React", desc: "Hello, React!" },
       subject: {
         title: "WEB",
@@ -46,31 +46,19 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        {
-          <Subject
-            title={this.state.subject.title}
-            sub={this.state.subject.sub}
-          />
-        }
-        {/*<header>
-          <h1>
-            <a
-              href="/"
-              onClick={function (e) {
-                e.preventDefault();
-                // this.state.mode = "read";
-                this.setState({
-                  mode: "read",
-                });
-              }.bind(this)}
-            >
-              {this.state.subject.title}
-            </a>
-          </h1>
-          {this.state.subject.sub}
-        </header>
-        */}
-        <TOC data={this.state.contents} />
+        <Subject
+          title={this.state.subject.title}
+          sub={this.state.subject.sub}
+          onChangePage={function () {
+            this.setState({ mode: "welcome" });
+          }.bind(this)}
+        />
+        <TOC
+          data={this.state.contents}
+          onChangePage={function () {
+            this.setState({ mode: "read" });
+          }.bind(this)}
+        />
         <Content title={_title} desc={_desc} />
       </div>
     );
